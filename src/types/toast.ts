@@ -47,7 +47,7 @@ export interface Toast {
   createdAt: number;
   visible: boolean;
   height?: number;
-  toastUnmountDelay?: number;
+  toastUnmountDelay: number;
 }
 
 export type ToastOptions = Partial<

@@ -33,6 +33,10 @@ const createToastCreator = (type?: ToastType): ToastHandler => (
   options: ToastOptions = {}
 ) => {
   const toast = createToast(message, type, options);
+  dispatch({
+    type: ActionType.UPSERT_TOAST,
+    toast
+  })
   return toast.id;
 };
 
