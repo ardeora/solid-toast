@@ -3,9 +3,6 @@
   "version": "0.0.0",
   "description": "Customizable Toast Notifications for SolidJS",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ardeora/solid-toast.git"
@@ -20,5 +17,19 @@
   "bugs": {
     "url": "https://github.com/ardeora/solid-toast/issues"
   },
-  "homepage": "https://github.com/ardeora/solid-toast#readme"
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "homepage": "https://github.com/ardeora/solid-toast#readme",
+  "dependencies": {
+    "solid-js": "^1.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.35",
+    "csstype": "^3.1.0",
+    "vite": "^2.9.9",
+    "vite-plugin-solid": "^2.2.6"
+  }
 }
