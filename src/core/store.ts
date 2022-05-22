@@ -74,10 +74,10 @@ export const dispatch = (action: Action) => {
 
       if (toastId) {
         const toastToRemove = toasts.find(t => t.id === toastId)
-        if (toastToRemove) scheduleRemoval(toastId, toastToRemove.toastUnmountDelay)
+        if (toastToRemove) scheduleRemoval(toastId, toastToRemove.unmountDelay)
       } else {
         toasts.forEach(t => {
-          scheduleRemoval(t.id, t.toastUnmountDelay)
+          scheduleRemoval(t.id, t.unmountDelay)
         })
       }
 

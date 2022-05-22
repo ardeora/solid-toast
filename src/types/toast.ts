@@ -1,4 +1,3 @@
-import { Properties as CSSProperties } from 'csstype';
 import { JSX } from 'solid-js';
 
 export type ToastType = 'success' | 'error' | 'loading' | 'blank' | 'custom';
@@ -41,13 +40,13 @@ export interface Toast {
     'aria-live': 'assertive' | 'off' | 'polite';
   };
 
-  style?: CSSProperties;
+  style?: JSX.CSSProperties;
   className?: string;
 
   createdAt: number;
   visible: boolean;
   height?: number;
-  toastUnmountDelay: number;
+  unmountDelay: number;
 }
 
 export type ToastOptions = Partial<
@@ -60,7 +59,7 @@ export type ToastOptions = Partial<
     | 'className'
     | 'style'
     | 'position'
-    | 'toastUnmountDelay'
+    | 'unmountDelay'
   >
 >;
 
@@ -74,10 +73,10 @@ export type Message = ValueOrFunction<Renderable, Toast>;
 
 export type ToastHandler = (message: Message, options?: ToastOptions) => string;
 
-export interface ToasterContainerProps {
+export interface ToastContainerProps {
   position?: ToastPosition;
   toastOptions?: DefaultToastOptions;
   gutter?: number;
-  containerStyle?: CSSProperties;
+  containerStyle?: JSX.CSSProperties;
   containerClassName?: string;
 }

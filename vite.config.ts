@@ -5,6 +5,7 @@ import solid from 'vite-plugin-solid';
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
+    minify: 'terser',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'solid-toast',

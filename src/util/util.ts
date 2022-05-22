@@ -1,6 +1,66 @@
+import { setDefaultOpts, defaultOpts, store, dispatch, defaultContainerOptions } from "../core";
+import { ActionType, Toast, ToastContainerProps, ToastPosition } from "../types";
+import { JSX } from "solid-js";
+
 export const generateID = (() => {
   let count = 0;
   return () => String(++count)
 })()
 
+export const mergeContainerOptions = (props: ToastContainerProps) => {
+  setDefaultOpts(s => ({
+    containerClassName: props.containerClassName ?? s.containerClassName,
+    containerStyle: props.containerStyle ?? s.containerStyle,
+    gutter: props.gutter ?? s.gutter ,
+    position: props.position ?? s.position,
+    toastOptions: {
+      ...s.toastOptions,
+      ...props.toastOptions,
+      duration: props.toastOptions?.duration 
+    }
+  }))
+}
 
+export const getToastWrapperStyles = (position: ToastPosition, offset: number): JSX.CSSProperties => {
+  const top = position.includes('top');
+  const verticalStyle: JSX.CSSProperties = top ? { top: 0 } : { bottom: 0 };
+  const horizontalStyle: JSX.CSSProperties = position.includes('center')
+    ? { 'justify-content': 'center'}
+    : position.includes('right')
+    ? { 'justify-content': 'flex-end'}
+    : {};
+  return {
+    left: 0,
+    right: 0,
+    display: 'flex',
+    position: 'absolute',
+    transition: `all 230ms cubic-bezier(.21,1.02,.73,1)`,
+    transform: `translateY(${offset * (top ? 1 : -1)}px)`,
+    ...verticalStyle,
+    ...horizontalStyle,
+  };
+}
+
+export const updateToastHeight = (ref: HTMLDivElement, toast: Toast) => {
+  const boundingRect = ref.getBoundingClientRect()
+  if(boundingRect.height !== toast.height) {
+    dispatch({
+      type: ActionType.UPDATE_TOAST,
+      toast: {id: toast.id, height: boundingRect.height}
+    })
+  }
+}
+
+export const getWrapperYAxisOffset = (toast: Toast, position: ToastPosition): number => {
+  const { toasts } = store()
+  const gutter = defaultOpts().gutter || defaultContainerOptions.gutter || 8;
+  const relevantToasts = toasts.filter(t => (
+    (t.position || position) === position && t.height 
+  ))  
+  const toastIndex = relevantToasts.findIndex((t) => t.id === toast.id);
+  const toastsBefore = relevantToasts.filter((toast, i) => i < toastIndex && toast.visible).length;
+  const offset = relevantToasts
+                 .slice(0, toastsBefore)
+                 .reduce((acc, t) => acc + gutter + (t.height || 0), 0)
+  return offset;
+}

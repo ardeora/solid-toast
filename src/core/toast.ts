@@ -1,10 +1,10 @@
 import { createSignal } from 'solid-js';
-import { ToasterContainerProps, Message, ToastType, ToastOptions, Toast, ToastHandler, ActionType } from '../types';
+import { ToastContainerProps, Message, ToastType, ToastOptions, Toast, ToastHandler, ActionType } from '../types';
 import { defaultContainerOptions, defaultToastOptions, defaultTimeouts } from './defaults';
 import { generateID } from '../util';
 import { dispatch } from './store';
 
-export const [defaultOpts, setDefaultOpts] = createSignal<ToasterContainerProps>(defaultContainerOptions);
+export const [defaultOpts, setDefaultOpts] = createSignal<ToastContainerProps>(defaultContainerOptions);
 
 export const createToast = (
   message: Message,
