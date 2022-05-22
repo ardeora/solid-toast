@@ -73,10 +73,19 @@ export type Message = ValueOrFunction<Renderable, Toast>;
 
 export type ToastHandler = (message: Message, options?: ToastOptions) => string;
 
-export interface ToastContainerProps {
+export interface ToasterProps {
   position?: ToastPosition;
   toastOptions?: DefaultToastOptions;
   gutter?: number;
   containerStyle?: JSX.CSSProperties;
   containerClassName?: string;
+}
+
+export interface ToastContainerProps {
+  toast: Toast;
+}
+
+export interface ToastBarProps {
+  toast: Toast,
+  position: ToastPosition
 }

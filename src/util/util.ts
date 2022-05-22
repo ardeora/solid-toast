@@ -1,5 +1,5 @@
-import { setDefaultOpts, defaultOpts, store, dispatch, defaultContainerOptions } from "../core";
-import { ActionType, Toast, ToastContainerProps, ToastPosition } from "../types";
+import { setDefaultOpts, defaultOpts, store, dispatch, defaultToasterOptions } from "../core";
+import { ActionType, Toast, ToasterProps, ToastPosition } from "../types";
 import { JSX } from "solid-js";
 
 export const generateID = (() => {
@@ -7,7 +7,7 @@ export const generateID = (() => {
   return () => String(++count)
 })()
 
-export const mergeContainerOptions = (props: ToastContainerProps) => {
+export const mergeContainerOptions = (props: ToasterProps) => {
   setDefaultOpts(s => ({
     containerClassName: props.containerClassName ?? s.containerClassName,
     containerStyle: props.containerStyle ?? s.containerStyle,
@@ -53,7 +53,7 @@ export const updateToastHeight = (ref: HTMLDivElement, toast: Toast) => {
 
 export const getWrapperYAxisOffset = (toast: Toast, position: ToastPosition): number => {
   const { toasts } = store()
-  const gutter = defaultOpts().gutter || defaultContainerOptions.gutter || 8;
+  const gutter = defaultOpts().gutter || defaultToasterOptions.gutter || 8;
   const relevantToasts = toasts.filter(t => (
     (t.position || position) === position && t.height 
   ))  

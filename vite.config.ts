@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import { format, resolve } from 'path'
 import solid from 'vite-plugin-solid';
-
+import pkg from "./package.json";
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -13,8 +13,16 @@ export default defineConfig({
       fileName: (format) => `solid-toast.${format}.js`,
     },
     rollupOptions: {
-      external: ['solid-js']
-    }
+      external: [
+        ...Object.keys(pkg.dependencies),
+        'solid-js',
+        "solid-js/web",
+        "solid-js/store"
+    ],
+      output: {
+        exports: 'named'
+      }
+    },
   },
   plugins: [
     solid()

@@ -1,10 +1,10 @@
 import { createSignal } from 'solid-js';
-import { ToastContainerProps, Message, ToastType, ToastOptions, Toast, ToastHandler, ActionType } from '../types';
-import { defaultContainerOptions, defaultToastOptions, defaultTimeouts } from './defaults';
+import { ToasterProps, Message, ToastType, ToastOptions, Toast, ToastHandler, ActionType } from '../types';
+import { defaultToasterOptions, defaultToastOptions, defaultTimeouts } from './defaults';
 import { generateID } from '../util';
-import { dispatch } from './store';
+import { dispatch, store } from './store';
 
-export const [defaultOpts, setDefaultOpts] = createSignal<ToastContainerProps>(defaultContainerOptions);
+export const [defaultOpts, setDefaultOpts] = createSignal<ToasterProps>(defaultToasterOptions);
 
 export const createToast = (
   message: Message,
@@ -32,11 +32,16 @@ const createToastCreator = (type?: ToastType): ToastHandler => (
   message: Message,
   options: ToastOptions = {}
 ) => {
-  const toast = createToast(message, type, options);
-  dispatch({
-    type: ActionType.UPSERT_TOAST,
-    toast
-  })
+  if (options.id) {
+    const existingToast = store().toasts.find(t => t.id === options.id)
+    if (existingToast) {
+      const toast = {...existingToast,...options, message}
+      dispatch({ type: ActionType.UPDATE_TOAST, toast})
+      return toast.id;
+    } 
+  }
+  const toast = createToast(message, type, options) 
+  dispatch({ type: ActionType.ADD_TOAST, toast})
   return toast.id;
 };
 

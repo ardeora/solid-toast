@@ -1,4 +1,4 @@
-import { ToastContainerProps, ToastOptions, ToastTimeouts } from "../types";
+import { ToasterProps, ToastOptions, ToastTimeouts } from "../types";
 import { JSX } from "solid-js";
 
 export const defaultTimeouts: ToastTimeouts = {
@@ -23,7 +23,7 @@ export const defaultToastOptions: Required<ToastOptions> = {
   position: 'top-right'
 }
 
-export const defaultContainerOptions: ToastContainerProps = {
+export const defaultToasterOptions: ToasterProps = {
   position: 'top-right',
   toastOptions: defaultToastOptions,
   gutter: 8,
@@ -40,6 +40,5 @@ export const defaultContainerStyle: JSX.CSSProperties = {
   bottom: defaultContainerPadding,
   left: defaultContainerPadding,
   right: defaultContainerPadding,
-  background: '#84cc1623',
   "pointer-events": 'none'
 }

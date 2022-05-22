@@ -19,14 +19,13 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "homepage": "https://github.com/ardeora/solid-toast#readme",
   "dependencies": {
     "goober": "^2.1.9",
-    "solid-js": "^1.4.2",
-    "solid-transition-group": "^0.0.10"
+    "solid-js": "^1.4.2"
   },
   "devDependencies": {
     "@types/node": "^17.0.35",
