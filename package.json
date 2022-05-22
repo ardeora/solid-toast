@@ -1,11 +1,19 @@
 {
   "name": "solid-toast",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Customizable Toast Notifications for SolidJS",
-  "main": "index.js",
+  "main": "./dist/solid-toast.cjs.js",
+  "module": "./dist/solid-toast.es.js",
+  "types": "./src/index.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ardeora/solid-toast.git"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/solid-toast.es.js",
+      "require": "./dist/solid-toast.umd.js"
+    }
   },
   "files": [
     "dist",
@@ -32,8 +40,7 @@
     "solid-js": "^1.4.2"
   },
   "devDependencies": {
-    "@types/node": "^17.0.35",
-    "csstype": "^3.1.0",
+    "typescript": "^4.6.4",
     "vite": "^2.9.9",
     "vite-plugin-solid": "^2.2.6"
   }

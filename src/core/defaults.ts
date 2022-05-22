@@ -35,7 +35,7 @@ const defaultContainerPadding = '16px'
 
 export const defaultContainerStyle: JSX.CSSProperties = {
   position: 'fixed',
-  zIndex: 9999,
+  'z-index': 9999,
   top: defaultContainerPadding,
   bottom: defaultContainerPadding,
   left: defaultContainerPadding,
