@@ -44,6 +44,7 @@ export interface Toast {
   className?: string;
 
   createdAt: number;
+  updatedAt?: number;
   visible: boolean;
   height?: number;
   unmountDelay: number;

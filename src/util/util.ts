@@ -14,9 +14,7 @@ export const mergeContainerOptions = (props: ToasterProps) => {
     gutter: props.gutter ?? s.gutter ,
     position: props.position ?? s.position,
     toastOptions: {
-      ...s.toastOptions,
       ...props.toastOptions,
-      duration: props.toastOptions?.duration 
     }
   }))
 }
@@ -46,7 +44,8 @@ export const updateToastHeight = (ref: HTMLDivElement, toast: Toast) => {
   if(boundingRect.height !== toast.height) {
     dispatch({
       type: ActionType.UPDATE_TOAST,
-      toast: {id: toast.id, height: boundingRect.height}
+      toast: {id: toast.id, height: boundingRect.height},
+      silent: true
     })
   }
 }
@@ -63,4 +62,10 @@ export const getWrapperYAxisOffset = (toast: Toast, position: ToastPosition): nu
                  .slice(0, toastsBefore)
                  .reduce((acc, t) => acc + gutter + (t.height || 0), 0)
   return offset;
+}
+
+export const getToastYDirection = (toast: Toast, defaultPos: ToastPosition) => {
+  const position = toast.position || defaultPos
+  const top = position.includes('top');
+  return top ? 1 : -1;
 }

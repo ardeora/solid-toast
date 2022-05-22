@@ -4,6 +4,8 @@ import { defaultToasterOptions, defaultToastOptions, defaultTimeouts } from './d
 import { generateID } from '../util';
 import { dispatch, store } from './store';
 
+import { resolveValue, Renderable, ValueOrFunction, DefaultToastOptions } from '../types';
+
 export const [defaultOpts, setDefaultOpts] = createSignal<ToasterProps>(defaultToasterOptions);
 
 export const createToast = (
@@ -25,23 +27,17 @@ export const createToast = (
     ...defaultOpts().toastOptions?.style,
     ...options.style
   },
-  duration: options.duration || defaultOpts().toastOptions?.duration || defaultTimeouts[type]
+  duration: options.duration || defaultOpts().toastOptions?.duration || defaultTimeouts[type],
+  position: options.position || defaultOpts().toastOptions?.position || defaultOpts().position || defaultToastOptions.position
 })
 
 const createToastCreator = (type?: ToastType): ToastHandler => (
   message: Message,
   options: ToastOptions = {}
 ) => {
-  if (options.id) {
-    const existingToast = store().toasts.find(t => t.id === options.id)
-    if (existingToast) {
-      const toast = {...existingToast,...options, message}
-      dispatch({ type: ActionType.UPDATE_TOAST, toast})
-      return toast.id;
-    } 
-  }
-  const toast = createToast(message, type, options) 
-  dispatch({ type: ActionType.ADD_TOAST, toast})
+  const existingToast = store().toasts.find(t => t.id === options.id);
+  const toast = createToast(message, type, {...existingToast, duration: undefined, ...options}) 
+  dispatch({ type: ActionType.UPSERT_TOAST, toast})
   return toast.id;
 };
 
@@ -59,6 +55,35 @@ toast.dismiss = (toastId?: string) => {
     toastId
   })
 }
+
+toast.promise = <T>(
+  promise: Promise<T>,
+  msgs: {
+    loading: Renderable;
+    success: ValueOrFunction<Renderable, T>;
+    error: ValueOrFunction<Renderable, any>;
+  },
+  opts?: DefaultToastOptions
+) => {
+  const id = toast.loading(msgs.loading, { ...opts });
+
+  promise
+    .then((p) => {
+      toast.success(resolveValue(msgs.success, p), {
+        id,
+        ...opts,
+      });
+      return p;
+    })
+    .catch((e) => {
+      toast.error(resolveValue(msgs.error, e), {
+        id,
+        ...opts,
+      });
+    });
+
+  return promise;
+};
 
 toast.remove = (toastId?: string) => {
   dispatch({

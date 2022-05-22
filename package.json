@@ -1,12 +1,16 @@
 {
   "name": "solid-toast",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Customizable Toast Notifications for SolidJS",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ardeora/solid-toast.git"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "keywords": [
     "solidjs",
     "notifications",

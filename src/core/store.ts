@@ -9,7 +9,6 @@ const [store, setStore] = createSignal<State>({
 createEffect(() => {
   const { pausedAt, toasts } = store()
   if(pausedAt) return;
-
   const now = Date.now()
   const timers = toasts.map(toast => {
     if(toast.duration === Infinity) return;
@@ -46,6 +45,7 @@ const scheduleRemoval = (toastId: string, unmountDelay: number) => {
   if(removalQueue.has(toastId)) return;
 
   const timeout = setTimeout(() => {
+    removalQueue.delete(toastId);
     dispatch({
       type: ActionType.REMOVE_TOAST,
       toastId
@@ -57,6 +57,7 @@ const scheduleRemoval = (toastId: string, unmountDelay: number) => {
 
 const unscheduleRemoval = (toastId: string) => {
   const timeout = removalQueue.get(toastId)
+  removalQueue.delete(toastId);
   if (timeout) clearTimeout(timeout)
 }
 
@@ -107,9 +108,11 @@ export const dispatch = (action: Action) => {
       }
       setStore(s => ({
         ...s,
-        toasts: s.toasts.map(t =>
-          t.id === action.toast.id ? { ...t, ...action.toast } : t  
-        )
+        toasts: s.toasts.map(t => (
+          t.id === action.toast.id ? 
+          { ...t, ...action.toast, updatedAt: action.silent ? undefined : Date.now() } : 
+          t  
+        ))
       }))
       break;
     case ActionType.UPSERT_TOAST:

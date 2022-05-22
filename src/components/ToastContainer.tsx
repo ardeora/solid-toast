@@ -9,7 +9,6 @@ import { css } from 'goober'
 const activeClass = css`z-index: 9999;> * { pointer-events: auto;}`;
 
 export const ToastContainer = (props: ToastContainerProps) => {
-
   const calculatePosition = () => {
     const position = props.toast.position || defaultToastOptions.position
     const offset = getWrapperYAxisOffset(props.toast, position)

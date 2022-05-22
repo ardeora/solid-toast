@@ -1,5 +1,5 @@
 import { keyframes } from 'goober'
-import { createEffect, createSignal } from 'solid-js'
+import { createEffect, createSignal, Match, Switch,  } from 'solid-js'
 import { ToastBarProps } from '../types'
 import { resolveValue } from '../types'
 import { 
@@ -7,29 +7,44 @@ import {
   messageContainer,
   entranceAnimation,
   exitAnimation,
-  iconContainer
+  iconContainer,
+  getToastYDirection as d
 } from '../util'
-import { Sucess } from './SuccessIcon'
+import { Sucess, Error, Loader } from './'
 
 export const ToastBar = (props: ToastBarProps) => {
   const message = resolveValue(props.toast.message, props.toast)
   const [animation, setAnimation] = createSignal('');
 
   createEffect(() => {
-    props.toast.visible ?
-    setAnimation(`${keyframes(entranceAnimation(1))} 0.35s cubic-bezier(.21,1.02,.73,1) forwards`) :
-    setAnimation(`${keyframes(exitAnimation(1))}  0.4s forwards cubic-bezier(.06,.71,.55,1)`) 
+    if (props.toast.visible && !props.toast.updatedAt) {
+      setAnimation(`${keyframes(entranceAnimation(d(props.toast, props.position)))} 0.35s cubic-bezier(.21,1.02,.73,1) forwards`)
+    }
+    
+    !props.toast.visible && setAnimation(`${keyframes(exitAnimation(d(props.toast, props.position)))}  0.4s forwards cubic-bezier(.06,.71,.55,1)`) 
   })
+
+  console.log(props.toast)
 
   return (
     <div style={{
       ...toastBarBase,
       animation: animation()
     }} >
-      <div style={iconContainer}>
-        <Sucess />
-      </div>
-      <div style={messageContainer}>{message}</div>
+      
+      <Switch>
+        <Match when={props.toast.type === 'loading'} >
+          <div style={iconContainer}><Loader /></div>
+        </Match>
+        <Match when={props.toast.type === 'success'} >
+          <div style={iconContainer}><Sucess /></div>
+        </Match>
+        <Match when={props.toast.type === 'error'} >
+          <div style={iconContainer}><Error /></div>
+        </Match>
+      </Switch>
+
+      <div style={messageContainer} {...props.toast.ariaProps} >{message}</div>
     </div>
   );
 }

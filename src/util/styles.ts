@@ -28,7 +28,7 @@ export const messageContainer: JSX.CSSProperties = {
   'align-items': 'center',
   flex: '1 1 auto',
   margin: '4px 10px',
-  'white-space': 'pre-line'
+  'white-space': 'pre-line',
 }
 
 export const iconContainer: JSX.CSSProperties = {
@@ -39,6 +39,10 @@ export const iconContainer: JSX.CSSProperties = {
 
 export const iconCircle = keyframes`from {transform: scale(0) rotate(45deg);opacity:0;}to{transform:scale(1)rotate(45deg);opacity:1;}`;
 
-export const pingAnimation = keyframes`75%,100%{transform: scale(2);opacity:0;}`
+export const pingCircle = keyframes`75%,100%{transform: scale(2.25);opacity:0;}`
 
-export const dash = keyframes`to{stroke-dashoffset: 0;}`
+export const icon = keyframes`to{stroke-dashoffset: 0;}`
+
+export const infoDot = keyframes`0%{transform:translate3d(0,0,0);opacity:1;}100%{transform:translate3d(0,7px,0)scale(1);opacity:1;}`
+
+export const rotate = keyframes`from{transform: rotate(0deg);}to{transform: rotate(360deg);}`;

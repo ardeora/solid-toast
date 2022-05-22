@@ -1,6 +1,6 @@
 import { toast } from './core'
 export * from './types'
-export * from './components'
+import { Toaster } from './components'
 
-export { toast }
+export { toast, Toaster }
 export default toast
