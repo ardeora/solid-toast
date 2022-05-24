@@ -1,6 +1,6 @@
 {
   "name": "solid-toast",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Customizable Toast Notifications for SolidJS",
   "main": "./dist/solid-toast.cjs.js",
   "module": "./dist/solid-toast.es.js",
@@ -41,6 +41,7 @@
     "solid-js": "^1.4.2"
   },
   "devDependencies": {
+    "@types/node": "^17.0.35",
     "typescript": "^4.6.4",
     "vite": "^2.9.9",
     "vite-plugin-solid": "^2.2.6"
