@@ -32,6 +32,9 @@ jobs:
         env:
           CI: true
 
+      - name: Build
+        run: yarn build
+
       - name: Update Publish Config
         run: sed -i 's^registry-url^registry.npmjs.org^' package.json
 
@@ -81,6 +84,9 @@ jobs:
         run: yarn install --frozen-lockfile
         env:
           CI: true
+      
+      - name: Build
+        run: yarn build
 
       - name: Update Package Name
         run: |
