@@ -20,7 +20,8 @@ export const defaultToastOptions: Required<ToastOptions> = {
   },
   className: '',
   style: {},
-  position: 'top-right'
+  position: 'top-right',
+  iconTheme: {}
 }
 
 export const defaultToasterOptions: ToasterProps = {

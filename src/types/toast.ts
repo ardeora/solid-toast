@@ -27,8 +27,8 @@ export const resolveValue = <TValue, TArg>(
 ): TValue => (isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction);
 
 export interface IconTheme {
-  primary: string;
-  secondary: string;
+  primary?: string;
+  secondary?: string;
 }
 
 export interface Toast {
