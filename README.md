@@ -88,7 +88,7 @@ toast('This is a simple toast!', {
 ```
 
 #### Creating Toasts
-There are several ways of generating toasts
+There are several options for creating toasts
 
 ##### Blank
 ```js
@@ -115,7 +115,7 @@ toast.loading('Loading Photos...');
 Shows a toast with a loading indicator icon. The content can later be updated with an error or success icon. See how to update the toast content [here](#updating-toasts).
 
 ##### Promise
-The `promise()` function can be used to create a toast from a promise. This will automatically show a loading icon and update the toast with the result of the promise.
+The `promise()` function can be used to create a toast from a promise. This function will automatically show a loading icon and update the toast with the result of the promise.
 ```jsx
 const myPromise = fetchData();
 
@@ -128,7 +128,7 @@ toast.promise(myPromise, {
 
 ##### Custom Toast
 You also have the ability to completely customize the appearance of your toast.
-A custom JSX Element can be passed like so:
+A custom JSX Element can be passed in like so:
 
 ```jsx
 toast.custom(() => (
@@ -163,7 +163,7 @@ toast.custom((t) => {
 #### Helpful Utilities
 
 ##### Dismiss Toasts Programatically
-You can manually dismiss a notification with toast.dismiss. Be aware that it triggers the exit animation and does not remove the Toast instantly. Toasts will auto-remove after 1 second by default. You can adjust the dismiss duration with the `unmountDelay` option.
+You can manually dismiss a notification with `toast.dismiss`. Beware that it triggers the exit animation and does not remove the Toast instantly. Toasts will auto-remove after 500ms by default. You can adjust the dismiss duration with the `unmountDelay` option.
 
 ###### Dismiss Single Toast
 ```js
