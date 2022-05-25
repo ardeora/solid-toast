@@ -1,14 +1,22 @@
 import { defaultContainerStyle } from "../core"
 import { ToasterProps } from ".."
 import { mergeContainerOptions } from "../util"
-import { createEffect, For } from "solid-js"
-import { store } from '../core';
+import { createEffect, For, onCleanup } from "solid-js"
+import { store, createTimers } from '../core';
 import { ToastContainer } from "./";
 
-
 export const Toaster = (props: ToasterProps) => {
+
   createEffect(() => {
     mergeContainerOptions(props)
+  })
+
+  createEffect(() => {
+    const timers = createTimers()
+    onCleanup(() => {
+      if(!timers) return;
+      timers.forEach(timer => timer && clearTimeout(timer))
+    })
   })
 
   return (

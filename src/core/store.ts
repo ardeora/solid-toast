@@ -1,4 +1,4 @@
-import { createSignal, createEffect, onCleanup } from 'solid-js';
+import { createSignal } from 'solid-js';
 import { State, Action, ActionType, Toast } from '../types';
 
 const [store, setStore] = createSignal<State>({
@@ -6,7 +6,7 @@ const [store, setStore] = createSignal<State>({
   pausedAt: undefined,
 })
 
-createEffect(() => {
+export const createTimers = () => {
   const { pausedAt, toasts } = store()
   if(pausedAt) return;
   const now = Date.now()
@@ -33,11 +33,8 @@ createEffect(() => {
     }, durationLeft)
   })
 
-  onCleanup(() => {
-    timers.forEach(timer => timer && clearTimeout(timer))
-  })
-
-})
+  return timers
+}
 
 const removalQueue = new Map<Toast['id'], ReturnType<typeof setTimeout>>();
 
