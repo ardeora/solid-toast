@@ -37,7 +37,7 @@ export const iconContainer: JSX.CSSProperties = {
   height: '20px'
 }
 
-export const iconCircle = keyframes`from {transform: scale(0) rotate(45deg);opacity:0;}to{transform:scale(1)rotate(45deg);opacity:1;}`;
+export const iconCircle = keyframes`from{transform:scale(0)rotate(45deg);opacity:0;}to{transform:scale(1)rotate(45deg);opacity:1;}`;
 
 export const pingCircle = keyframes`75%,100%{transform: scale(2.25);opacity:0;}`
 

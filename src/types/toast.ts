@@ -26,6 +26,11 @@ export const resolveValue = <TValue, TArg>(
   arg: TArg
 ): TValue => (isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction);
 
+export interface IconTheme {
+  primary: string;
+  secondary: string;
+}
+
 export interface Toast {
   type: ToastType;
   id: string;
@@ -42,6 +47,8 @@ export interface Toast {
 
   style?: JSX.CSSProperties;
   className?: string;
+
+  iconTheme?: IconTheme;
 
   createdAt: number;
   updatedAt?: number;
@@ -61,6 +68,7 @@ export type ToastOptions = Partial<
     | 'style'
     | 'position'
     | 'unmountDelay'
+    | 'iconTheme'
   >
 >;
 
@@ -90,3 +98,5 @@ export interface ToastBarProps {
   toast: Toast,
   position: ToastPosition
 }
+
+export type IconProps = Partial<IconTheme>

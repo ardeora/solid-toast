@@ -1,5 +1,5 @@
 import { keyframes } from 'goober'
-import { createEffect, createSignal, Match, Switch,  } from 'solid-js'
+import { createEffect, createSignal, Match, Switch  } from 'solid-js'
 import { ToastBarProps } from '../types'
 import { resolveValue } from '../types'
 import { 
@@ -10,7 +10,7 @@ import {
   iconContainer,
   getToastYDirection as d
 } from '../util'
-import { Sucess, Error, Loader } from './'
+import { Success, Error, Loader } from './'
 
 export const ToastBar = (props: ToastBarProps) => {
   const message = resolveValue(props.toast.message, props.toast)
@@ -24,23 +24,28 @@ export const ToastBar = (props: ToastBarProps) => {
     !props.toast.visible && setAnimation(`${keyframes(exitAnimation(d(props.toast, props.position)))}  0.4s forwards cubic-bezier(.06,.71,.55,1)`) 
   })
 
-  console.log(props.toast)
-
   return (
-    <div style={{
-      ...toastBarBase,
-      animation: animation()
-    }} >
+    <div
+      class={props.toast.className} 
+      style={{
+        ...toastBarBase,
+        animation: animation(),
+        ...props.toast.style
+      }} 
+    >
       
       <Switch>
+        <Match when={props.toast.icon} >
+          <div style={iconContainer}>{props.toast.icon}</div>
+        </Match>
         <Match when={props.toast.type === 'loading'} >
-          <div style={iconContainer}><Loader /></div>
+          <div style={iconContainer}><Loader {...props.toast.iconTheme} /></div>
         </Match>
         <Match when={props.toast.type === 'success'} >
-          <div style={iconContainer}><Sucess /></div>
+          <div style={iconContainer}><Success {...props.toast.iconTheme}/></div>
         </Match>
         <Match when={props.toast.type === 'error'} >
-          <div style={iconContainer}><Error /></div>
+          <div style={iconContainer}><Error {...props.toast.iconTheme}/></div>
         </Match>
       </Switch>
 
