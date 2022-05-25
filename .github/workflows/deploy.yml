@@ -1,8 +1,8 @@
 name: npm-publish
 on:
   push:
-    branches:        
-      - main
+    tags:        
+      - v0.**
 jobs:
   npm-publish:
     name: npm-publish
