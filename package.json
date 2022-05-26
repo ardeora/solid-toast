@@ -1,6 +1,6 @@
 {
   "name": "solid-toast",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Customizable Toast Notifications for SolidJS",
   "main": "./dist/solid-toast.cjs.js",
   "module": "./dist/solid-toast.es.js",
@@ -37,7 +37,9 @@
   },
   "homepage": "https://github.com/ardeora/solid-toast#readme",
   "dependencies": {
-    "goober": "^2.1.9",
+    "goober": "^2.1.9"
+  },
+  "peerDependencies": {
     "solid-js": "^1.4.2"
   },
   "devDependencies": {

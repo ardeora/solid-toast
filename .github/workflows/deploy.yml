@@ -1,8 +1,8 @@
 name: npm-publish
 on:
   push:
-    tags:        
-      - v0.**
+    branches:
+      - main # Change this to your default branch
 jobs:
   npm-publish:
     name: npm-publish
@@ -19,11 +19,23 @@ jobs:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Use cached node_modules
+        uses: actions/cache@master
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
 
-      - name: Build
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          CI: true
+      
+      - name: Build Package
         run: yarn build
+        env:
+          CI: true
 
       - name: Update Publish Config
         run: sed -i 's^registry-url^registry.npmjs.org^' package.json
@@ -58,15 +70,27 @@ jobs:
       - name: Setup Node.js (GPR)
         uses: actions/setup-node@master
         with:
-          node-version: '18.x'
+          node-version: '12.x'
           registry-url: https://npm.pkg.github.com/
           scope: '${{ env.actor_name }}'
 
-      - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+      - name: Use cached node_modules
+        uses: actions/cache@master
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            nodeModules-
 
-      - name: Build
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+        env:
+          CI: true
+      
+      - name: Build Package
         run: yarn build
+        env:
+          CI: true
 
       - name: Update Package Name
         run: |

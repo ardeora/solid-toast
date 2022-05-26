@@ -22,7 +22,6 @@ export type Action =
   | {
       type: ActionType.UPDATE_TOAST;
       toast: Partial<Toast>;
-      silent?: boolean;
     }
   | {
       type: ActionType.DISMISS_TOAST;

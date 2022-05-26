@@ -45,7 +45,6 @@ export const updateToastHeight = (ref: HTMLDivElement, toast: Toast) => {
     dispatch({
       type: ActionType.UPDATE_TOAST,
       toast: {id: toast.id, height: boundingRect.height},
-      silent: true
     })
   }
 }
