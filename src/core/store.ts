@@ -1,13 +1,13 @@
-import { createSignal } from 'solid-js';
 import { State, Action, ActionType, Toast } from '../types';
+import { createStore, produce as p } from 'solid-js/store';
 
-const [store, setStore] = createSignal<State>({
+const [store, setStore] = createStore<State>({
   toasts: [],
   pausedAt: undefined,
 })
 
 export const createTimers = () => {
-  const { pausedAt, toasts } = store()
+  const { pausedAt, toasts } = store
   if(pausedAt) return;
   const now = Date.now()
   const timers = toasts.map(toast => {
@@ -61,14 +61,14 @@ const unscheduleRemoval = (toastId: string) => {
 export const dispatch = (action: Action) => {
   switch(action.type) {
     case ActionType.ADD_TOAST:
-      setStore(s => ({
-        ...s,
-        toasts: [action.toast, ...s.toasts]
-      }))
+      setStore('toasts', t => {
+        const toasts = t as Toast[];
+        return [action.toast, ...toasts]
+      })
       break;
     case ActionType.DISMISS_TOAST:
       const { toastId } = action
-      const toasts = store().toasts
+      const toasts = store.toasts
 
       if (toastId) {
         const toastToRemove = toasts.find(t => t.id === toastId)
@@ -79,56 +79,46 @@ export const dispatch = (action: Action) => {
         })
       }
 
-      setStore(s => ({
-        ...s,
-        toasts: s.toasts.map(t => {
-          if(t.id === toastId) {
-            return {...t, visible: false}
-          }
-          return t
-        })
-      }))
+      setStore('toasts', t => t.id === toastId, p(t => t.visible = false))
       break;
     case ActionType.REMOVE_TOAST:
       if (!action.toastId) {
-        setStore(s => ({ ...s, toasts: [] }))
+        setStore('toasts', [])
         break;
       }
-      setStore(s => ({
-        ...s,
-        toasts: s.toasts.filter(t => t.id !== action.toastId)
-      }))
+      setStore('toasts', t => {
+        const toasts = t as Toast[];
+        return toasts.filter(t => t.id !== action.toastId)
+      })
       break;
     case ActionType.UPDATE_TOAST:
       if (action.toast.id) {
         unscheduleRemoval(action.toast.id)
       }
-      setStore(s => ({
-        ...s,
-        toasts: s.toasts.map(t => (
-          t.id === action.toast.id ? 
-          { ...t, ...action.toast, updatedAt: action.silent ? undefined : Date.now() } : 
-          t  
-        ))
-      }))
+
+      setStore('toasts', t => t.id === action.toast.id, t => {
+        const toast = t as Toast;
+        return {
+          ...toast,
+          ...action.toast,
+        }
+      })
       break;
     case ActionType.UPSERT_TOAST:
-      store().toasts.find(t => t.id === action.toast.id) ?
+      store.toasts.find(t => t.id === action.toast.id) ?
       dispatch({ type: ActionType.UPDATE_TOAST, toast: action.toast}) :
       dispatch({ type: ActionType.ADD_TOAST, toast: action.toast})
       break;
     case ActionType.START_PAUSE:
-      setStore(s => ({ ...s, pausedAt: action.time }))
+      setStore('pausedAt', Date.now())
       break;
     case ActionType.END_PAUSE:
-      const pauseInterval = action.time - (store().pausedAt || 0)
-      setStore(s => ({
-        ...s,
-        pausedAt: undefined,
-        toasts: s.toasts.map(t => ({
-          ...t,
-          pauseDuration: t.pauseDuration + pauseInterval
-        }))
+      const pauseInterval = action.time - (store.pausedAt || 0)
+      setStore(p(s => {
+        s.pausedAt = undefined;
+        s.toasts.forEach(t => {
+          t.pauseDuration += pauseInterval;
+        })
       }))
       break;
   }

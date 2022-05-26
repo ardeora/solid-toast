@@ -51,7 +51,7 @@ export const updateToastHeight = (ref: HTMLDivElement, toast: Toast) => {
 }
 
 export const getWrapperYAxisOffset = (toast: Toast, position: ToastPosition): number => {
-  const { toasts } = store()
+  const { toasts } = store;
   const gutter = defaultOpts().gutter || defaultToasterOptions.gutter || 8;
   const relevantToasts = toasts.filter(t => (
     (t.position || position) === position && t.height 
