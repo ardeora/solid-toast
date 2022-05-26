@@ -13,10 +13,11 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@main
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Setup Node.js (NPM)
+        uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '18.x'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
@@ -54,10 +55,12 @@ jobs:
           grep -Po '"name": *\K"[^"]*"' package.json | grep -oP '"\K[^"\047]+(?=["\047])' >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Setup Node.js (GPR)
+        uses: actions/setup-node@master
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '18.x'
+          registry-url: https://npm.pkg.github.com/
+          scope: '${{ env.actor_name }}'
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1

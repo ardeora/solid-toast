@@ -17,11 +17,9 @@ export const ToastBar = (props: ToastBarProps) => {
   const [animation, setAnimation] = createSignal('');
 
   createEffect(() => {
-    if (props.toast.visible && !props.toast.updatedAt) {
-      setAnimation(`${keyframes(entranceAnimation(d(props.toast, props.position)))} 0.35s cubic-bezier(.21,1.02,.73,1) forwards`)
-    }
-    
-    !props.toast.visible && setAnimation(`${keyframes(exitAnimation(d(props.toast, props.position)))}  0.4s forwards cubic-bezier(.06,.71,.55,1)`) 
+    props.toast.visible ?
+      setAnimation(`${keyframes(entranceAnimation(d(props.toast, props.position)))} 0.35s cubic-bezier(.21,1.02,.73,1) forwards`) :
+      setAnimation(`${keyframes(exitAnimation(d(props.toast, props.position)))}  0.4s forwards cubic-bezier(.06,.71,.55,1)`) 
   })
 
   return (

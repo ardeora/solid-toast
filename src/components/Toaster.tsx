@@ -4,6 +4,7 @@ import { mergeContainerOptions } from "../util"
 import { createEffect, For, onCleanup } from "solid-js"
 import { store, createTimers } from '../core';
 import { ToastContainer } from "./";
+import { Toast } from "../types";
 
 export const Toaster = (props: ToasterProps) => {
 
@@ -27,8 +28,8 @@ export const Toaster = (props: ToasterProps) => {
       }}
       class={props.containerClassName}
     >
-      <For each={store().toasts} >
-        {(toast) => <ToastContainer toast={toast} />}
+      <For each={store.toasts} >
+        {(toast) => <ToastContainer toast={toast as Toast} />}
       </For>
     </div>
   )

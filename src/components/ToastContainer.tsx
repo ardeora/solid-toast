@@ -1,8 +1,8 @@
 import { ToastContainerProps } from "../"
 import { getToastWrapperStyles, updateToastHeight, getWrapperYAxisOffset } from "../util"
-import { createEffect, createSignal, on, onMount } from "solid-js"
-import { store, defaultToastOptions } from '../core';
-import { resolveValue } from "../types";
+import { createEffect, createSignal, onMount } from "solid-js"
+import { defaultToastOptions, dispatch } from '../core';
+import { ActionType, resolveValue } from "../types";
 import { ToastBar } from "./ToastBar";
 import { css } from 'goober'
 
@@ -19,10 +19,10 @@ export const ToastContainer = (props: ToastContainerProps) => {
 
   const [positionStyle, setPositionStyle] = createSignal(calculatePosition())
 
-  createEffect(on(store, () => {
+  createEffect(() => {
     const newStyles = calculatePosition()
     setPositionStyle(newStyles) 
-  }))
+  })
 
   let el: (HTMLDivElement | undefined) = undefined;
   onMount(() => {
@@ -36,6 +36,14 @@ export const ToastContainer = (props: ToastContainerProps) => {
     ref={el}
     style={positionStyle()}
     class={props.toast.visible ? activeClass : ''}
+    onMouseEnter={() => dispatch({
+      type: ActionType.START_PAUSE,
+      time: Date.now()
+    })}
+    onMouseLeave={() => dispatch({
+      type: ActionType.END_PAUSE,
+      time: Date.now()
+    })}
   >
     {
       props.toast.type === 'custom' ? 

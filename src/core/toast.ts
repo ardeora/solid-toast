@@ -35,7 +35,7 @@ const createToastCreator = (type?: ToastType): ToastHandler => (
   message: Message,
   options: ToastOptions = {}
 ) => {
-  const existingToast = store().toasts.find(t => t.id === options.id);
+  const existingToast = store.toasts.find(t => t.id === options.id) as Toast;
   const toast = createToast(message, type, {...existingToast, duration: undefined, ...options}) 
   dispatch({ type: ActionType.UPSERT_TOAST, toast})
   return toast.id;
