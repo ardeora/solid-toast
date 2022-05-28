@@ -2,6 +2,7 @@
 
 <div align="center">
     <img src="https://badgen.net/npm/v/solid-toast" alt="NPM Version" />
+    <img src="https://badgen.net/bundlephobia/minzip/solid-toast" alt="minzipped size"/>
     <img src="https://github.com/ardeora/solid-toast/workflows/build/badge.svg" alt="Build Status" />
 </a>
 </div>
