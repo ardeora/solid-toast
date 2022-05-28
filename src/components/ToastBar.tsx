@@ -13,7 +13,6 @@ import {
 import { Success, Error, Loader } from './'
 
 export const ToastBar = (props: ToastBarProps) => {
-  const message = resolveValue(props.toast.message, props.toast)
   const [animation, setAnimation] = createSignal('');
 
   createEffect(() => {
@@ -47,7 +46,7 @@ export const ToastBar = (props: ToastBarProps) => {
         </Match>
       </Switch>
 
-      <div style={messageContainer} {...props.toast.ariaProps} >{message}</div>
+      <div style={messageContainer} {...props.toast.ariaProps} >{resolveValue(props.toast.message, props.toast)}</div>
     </div>
   );
 }

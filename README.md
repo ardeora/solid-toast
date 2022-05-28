@@ -7,6 +7,10 @@
 </div>
 <br />
 <div align="center"><strong>Create beautiful, customizable toasts in SolidJS.</strong></div>
+<br />
+<div align="center" >
+<a  href="https://stackblitz.com/edit/vitejs-vite-4yv1ri?file=src/App.tsx">StackBlitz Demo</a>
+</div>
 
 <br />
 
