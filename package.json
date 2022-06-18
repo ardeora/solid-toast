@@ -1,6 +1,6 @@
 {
   "name": "solid-toast",
-  "version": "0.1.4",
+  "version": "0.1.5-alpha.0",
   "description": "Customizable Toast Notifications for SolidJS",
   "main": "./dist/solid-toast.cjs.js",
   "module": "./dist/solid-toast.es.js",
