@@ -33,8 +33,12 @@ export const messageContainer: JSX.CSSProperties = {
 
 export const iconContainer: JSX.CSSProperties = {
   'flex-shrink': 0,
-  width: '20px',
-  height: '20px'
+  'min-width': '20px',
+  'min-height': '20px',
+  display: 'flex',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'text-align': 'center',
 }
 
 export const iconCircle = keyframes`from{transform:scale(0)rotate(45deg);opacity:0;}to{transform:scale(1)rotate(45deg);opacity:1;}`;
