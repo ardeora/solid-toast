@@ -21,7 +21,7 @@ export const mergeContainerOptions = (props: ToasterProps) => {
 
 export const getToastWrapperStyles = (position: ToastPosition, offset: number): JSX.CSSProperties => {
   const top = position.includes('top');
-  const verticalStyle: JSX.CSSProperties = top ? { top: 0 } : { bottom: 0 };
+  const verticalStyle: JSX.CSSProperties = top ? { top: 0, "margin-top": `${offset}px`, } : { bottom: 0, "margin-bottom": `${offset}px`, };
   const horizontalStyle: JSX.CSSProperties = position.includes('center')
     ? { 'justify-content': 'center'}
     : position.includes('right')
@@ -33,7 +33,6 @@ export const getToastWrapperStyles = (position: ToastPosition, offset: number): 
     display: 'flex',
     position: 'absolute',
     transition: `all 230ms cubic-bezier(.21,1.02,.73,1)`,
-    transform: `translateY(${offset * (top ? 1 : -1)}px)`,
     ...verticalStyle,
     ...horizontalStyle,
   };

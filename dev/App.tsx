@@ -4,9 +4,13 @@ import toast, { Toaster } from "../src";
 const App: Component = () => {
   let toastID: string[] = [];
   const popSuccess = () =>
-    toastID.push(toast.success("Success!", { duration: Infinity }));
+    toastID.push(
+      toast.success(`Success! ${toastID.length + 1}`, { duration: Infinity })
+    );
   const popError = () =>
-    toastID.push(toast.error("Error!", { duration: Infinity }));
+    toastID.push(
+      toast.error(`Error! ${toastID.length + 1}`, { duration: Infinity })
+    );
   const closeAll = () => {
     toastID.forEach((id) => toast.dismiss(id));
     toastID = [];
