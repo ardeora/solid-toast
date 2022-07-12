@@ -1,6 +1,6 @@
 {
   "name": "solid-toast",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "Customizable Toast Notifications for SolidJS",
   "source": "./src/index.tsx",
   "main": "dist/cjs/index.js",
@@ -37,7 +37,8 @@
   "scripts": {
     "dev": "vite",
     "build": "rollup -c",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js"
   },
   "homepage": "https://github.com/ardeora/solid-toast#readme",
   "dependencies": {
@@ -49,7 +50,10 @@
   "devDependencies": {
     "@types/node": "^17.0.35",
     "rollup": "^2.75.7",
+    "rollup-plugin-terser": "^7.0.2",
     "rollup-preset-solid": "^1.4.0",
+    "solid-js": "^1.4.2",
+    "terser": "^5.14.1",
     "typescript": "^4.6.4",
     "vite": "^2.9.9",
     "vite-plugin-dts": "^1.2.0",
