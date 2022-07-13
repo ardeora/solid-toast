@@ -47,6 +47,4 @@ export const pingCircle = keyframes`75%,100%{transform: scale(2.25);opacity:0;}`
 
 export const icon = keyframes`to{stroke-dashoffset: 0;}`;
 
-export const infoDot = keyframes`0%{transform:translate3d(0,0,0);opacity:1;}100%{transform:translate3d(0,7px,0)scale(1);opacity:1;}`;
-
 export const rotate = keyframes`from{transform: rotate(0deg);}to{transform: rotate(360deg);}`;
