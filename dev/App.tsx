@@ -2,19 +2,9 @@ import { Component } from "solid-js";
 import toast, { Toaster } from "../src";
 
 const App: Component = () => {
-  let toastID: string[] = [];
-  const popSuccess = () =>
-    toastID.push(
-      toast.success(`Success! ${toastID.length + 1}`, { duration: Infinity })
-    );
-  const popError = () =>
-    toastID.push(
-      toast.error(`Error! ${toastID.length + 1}`, { duration: Infinity })
-    );
-  const closeAll = () => {
-    toastID.forEach((id) => toast.dismiss(id));
-    toastID = [];
-  };
+  const popSuccess = () => toast.success("Success!", { duration: Infinity });
+  const popError = () => toast.error("Error!", { duration: Infinity });
+  const closeAll = () => toast.dismiss();
   return (
     <div>
       <Toaster position="top-center" />
