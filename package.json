@@ -1,6 +1,6 @@
 {
   "name": "solid-toast",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Customizable Toast Notifications for SolidJS",
   "source": "./src/index.tsx",
   "main": "dist/cjs/index.js",
