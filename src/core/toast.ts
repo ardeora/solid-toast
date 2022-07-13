@@ -8,11 +8,7 @@ import { resolveValue, Renderable, ValueOrFunction, DefaultToastOptions } from '
 
 export const [defaultOpts, setDefaultOpts] = createSignal<ToasterProps>(defaultToasterOptions);
 
-export const createToast = (
-  message: Message,
-  type: ToastType = 'blank',
-  options: ToastOptions
-): Toast => ({
+export const createToast = (message: Message, type: ToastType = 'blank', options: ToastOptions): Toast => ({
   ...defaultToastOptions,
   ...defaultOpts().toastOptions,
   ...options,
@@ -25,36 +21,35 @@ export const createToast = (
   style: {
     ...defaultToastOptions.style,
     ...defaultOpts().toastOptions?.style,
-    ...options.style
+    ...options.style,
   },
   duration: options.duration || defaultOpts().toastOptions?.duration || defaultTimeouts[type],
-  position: options.position || defaultOpts().toastOptions?.position || defaultOpts().position || defaultToastOptions.position
-})
+  position:
+    options.position || defaultOpts().toastOptions?.position || defaultOpts().position || defaultToastOptions.position,
+});
 
-const createToastCreator = (type?: ToastType): ToastHandler => (
-  message: Message,
-  options: ToastOptions = {}
-) => {
-  const existingToast = store.toasts.find(t => t.id === options.id) as Toast;
-  const toast = createToast(message, type, {...existingToast, duration: undefined, ...options}) 
-  dispatch({ type: ActionType.UPSERT_TOAST, toast})
-  return toast.id;
-};
+const createToastCreator =
+  (type?: ToastType): ToastHandler =>
+  (message: Message, options: ToastOptions = {}) => {
+    const existingToast = store.toasts.find((t) => t.id === options.id) as Toast;
+    const toast = createToast(message, type, { ...existingToast, duration: undefined, ...options });
+    dispatch({ type: ActionType.UPSERT_TOAST, toast });
+    return toast.id;
+  };
 
-const toast = (message: Message, opts?: ToastOptions) =>
-  createToastCreator('blank')(message, opts);
+const toast = (message: Message, opts?: ToastOptions) => createToastCreator('blank')(message, opts);
 
-toast.error = createToastCreator('error')
-toast.success = createToastCreator('success')
-toast.loading = createToastCreator('loading')
-toast.custom = createToastCreator('custom')
+toast.error = createToastCreator('error');
+toast.success = createToastCreator('success');
+toast.loading = createToastCreator('loading');
+toast.custom = createToastCreator('custom');
 
 toast.dismiss = (toastId?: string) => {
   dispatch({
     type: ActionType.DISMISS_TOAST,
-    toastId
-  })
-}
+    toastId,
+  });
+};
 
 toast.promise = <T>(
   promise: Promise<T>,
@@ -88,8 +83,8 @@ toast.promise = <T>(
 toast.remove = (toastId?: string) => {
   dispatch({
     type: ActionType.REMOVE_TOAST,
-    toastId
-  })
-}
+    toastId,
+  });
+};
 
-export { toast }
+export { toast };

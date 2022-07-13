@@ -1,36 +1,33 @@
-import { defaultContainerStyle } from "../core"
-import { ToasterProps } from ".."
-import { mergeContainerOptions } from "../util"
-import { createEffect, For, onCleanup } from "solid-js"
+import { defaultContainerStyle } from '../core';
+import { ToasterProps } from '..';
+import { mergeContainerOptions } from '../util';
+import { createEffect, For, onCleanup } from 'solid-js';
 import { store, createTimers } from '../core';
-import { ToastContainer } from "./";
-import { Toast } from "../types";
+import { ToastContainer } from './';
+import { Toast } from '../types';
 
 export const Toaster = (props: ToasterProps) => {
+  createEffect(() => {
+    mergeContainerOptions(props);
+  });
 
   createEffect(() => {
-    mergeContainerOptions(props)
-  })
-
-  createEffect(() => {
-    const timers = createTimers()
+    const timers = createTimers();
     onCleanup(() => {
-      if(!timers) return;
-      timers.forEach(timer => timer && clearTimeout(timer))
-    })
-  })
+      if (!timers) return;
+      timers.forEach((timer) => timer && clearTimeout(timer));
+    });
+  });
 
   return (
-    <div 
+    <div
       style={{
-      ...defaultContainerStyle,
-      ...props.containerStyle
+        ...defaultContainerStyle,
+        ...props.containerStyle,
       }}
       class={props.containerClassName}
     >
-      <For each={store.toasts} >
-        {(toast) => <ToastContainer toast={toast as Toast} />}
-      </For>
+      <For each={store.toasts}>{(toast) => <ToastContainer toast={toast as Toast} />}</For>
     </div>
-  )
-}
+  );
+};

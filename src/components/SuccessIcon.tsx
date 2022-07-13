@@ -1,5 +1,5 @@
-import { iconCircle, pingCircle, icon } from "../util";
-import { IconProps } from "../types";
+import { iconCircle, pingCircle, icon } from '../util';
+import { IconProps } from '../types';
 
 export const Success = (props: IconProps) => {
   const mainCircle = `${iconCircle} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards`;
@@ -7,15 +7,15 @@ export const Success = (props: IconProps) => {
   const check = `${icon} 0.2s ease-out forwards`;
 
   return (
-    <svg style={{ overflow: "visible" }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
+    <svg style={{ overflow: 'visible' }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
       <circle
         style={{
           animation: mainCircle,
-          "transform-origin": "50% 50%",
-          "animation-delay": "100ms",
+          'transform-origin': '50% 50%',
+          'animation-delay': '100ms',
           opacity: 0,
         }}
-        fill={props.primary || "#34C759"}
+        fill={props.primary || '#34C759'}
         cx="16"
         cy="16"
         r="16"
@@ -23,10 +23,10 @@ export const Success = (props: IconProps) => {
       <circle
         style={{
           animation: secondaryCircle,
-          "transform-origin": "50% 50%",
-          "animation-delay": "250ms",
+          'transform-origin': '50% 50%',
+          'animation-delay': '250ms',
         }}
-        fill={props.primary || "#34C759"}
+        fill={props.primary || '#34C759'}
         cx="16"
         cy="16"
         r="12"
@@ -34,12 +34,12 @@ export const Success = (props: IconProps) => {
       <path
         style={{
           animation: check,
-          "stroke-dasharray": 22,
-          "stroke-dashoffset": 22,
-          "animation-delay": "250ms",
+          'stroke-dasharray': 22,
+          'stroke-dashoffset': 22,
+          'animation-delay': '250ms',
         }}
         fill="none"
-        stroke={props.secondary || "#FCFCFC"}
+        stroke={props.secondary || '#FCFCFC'}
         stroke-width="4"
         stroke-linecap="round"
         stroke-miterlimit="10"

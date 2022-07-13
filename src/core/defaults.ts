@@ -1,5 +1,5 @@
-import { ToasterProps, ToastOptions, ToastTimeouts } from "../types";
-import { JSX } from "solid-js";
+import { ToasterProps, ToastOptions, ToastTimeouts } from '../types';
+import { JSX } from 'solid-js';
 
 export const defaultTimeouts: ToastTimeouts = {
   blank: 4000,
@@ -21,18 +21,18 @@ export const defaultToastOptions: Required<ToastOptions> = {
   className: '',
   style: {},
   position: 'top-right',
-  iconTheme: {}
-}
+  iconTheme: {},
+};
 
 export const defaultToasterOptions: ToasterProps = {
   position: 'top-right',
   toastOptions: defaultToastOptions,
   gutter: 8,
   containerStyle: {},
-  containerClassName: ''
-}
+  containerClassName: '',
+};
 
-const defaultContainerPadding = '16px'
+const defaultContainerPadding = '16px';
 
 export const defaultContainerStyle: JSX.CSSProperties = {
   position: 'fixed',
@@ -41,5 +41,5 @@ export const defaultContainerStyle: JSX.CSSProperties = {
   bottom: defaultContainerPadding,
   left: defaultContainerPadding,
   right: defaultContainerPadding,
-  "pointer-events": 'none'
-}
+  'pointer-events': 'none',
+};

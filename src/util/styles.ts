@@ -1,5 +1,5 @@
-import { JSX } from 'solid-js'
-import { keyframes } from "goober"
+import { JSX } from 'solid-js';
+import { keyframes } from 'goober';
 
 export const toastBarBase: JSX.CSSProperties = {
   display: 'flex',
@@ -12,24 +12,24 @@ export const toastBarBase: JSX.CSSProperties = {
   padding: '8px 10px',
   'border-radius': '4px',
   'line-height': '1.3',
-  'will-change': 'transform'
-}
+  'will-change': 'transform',
+};
 
 export const entranceAnimation = (direction: number): string => `
 0% {transform: translate3d(0,${direction * -200}%,0) scale(.6); opacity:.5;}
 100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
-`
+`;
 export const exitAnimation = (direction: number): string => `
 0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
 100% {transform: translate3d(0,${direction * -150}%,-1px) scale(.4); opacity:0;}
-`
+`;
 export const messageContainer: JSX.CSSProperties = {
   display: 'flex',
   'align-items': 'center',
   flex: '1 1 auto',
   margin: '4px 10px',
   'white-space': 'pre-line',
-}
+};
 
 export const iconContainer: JSX.CSSProperties = {
   'flex-shrink': 0,
@@ -39,14 +39,14 @@ export const iconContainer: JSX.CSSProperties = {
   'align-items': 'center',
   'justify-content': 'center',
   'text-align': 'center',
-}
+};
 
 export const iconCircle = keyframes`from{transform:scale(0)rotate(45deg);opacity:0;}to{transform:scale(1)rotate(45deg);opacity:1;}`;
 
-export const pingCircle = keyframes`75%,100%{transform: scale(2.25);opacity:0;}`
+export const pingCircle = keyframes`75%,100%{transform: scale(2.25);opacity:0;}`;
 
-export const icon = keyframes`to{stroke-dashoffset: 0;}`
+export const icon = keyframes`to{stroke-dashoffset: 0;}`;
 
-export const infoDot = keyframes`0%{transform:translate3d(0,0,0);opacity:1;}100%{transform:translate3d(0,7px,0)scale(1);opacity:1;}`
+export const infoDot = keyframes`0%{transform:translate3d(0,0,0);opacity:1;}100%{transform:translate3d(0,7px,0)scale(1);opacity:1;}`;
 
 export const rotate = keyframes`from{transform: rotate(0deg);}to{transform: rotate(360deg);}`;

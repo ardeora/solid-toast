@@ -1,19 +1,19 @@
-import { Component } from "solid-js";
-import toast, { Toaster } from "../src";
+import { Component } from 'solid-js';
+import toast, { Toaster } from '../';
 
 const App: Component = () => {
-  const popSuccess = () => toast.success("Success!", { duration: Infinity });
-  const popError = () => toast.error("Error!", { duration: Infinity });
+  const popSuccess = () => toast.success('Success!', { duration: Infinity });
+  const popError = () => toast.error('Error!', { duration: Infinity });
   const closeAll = () => toast.dismiss();
   return (
     <div>
-      <Toaster position="top-center" />
+      <Toaster position="bottom-center" />
       <div
         style={{
-          display: "flex",
-          "flex-direction": "column",
-          "align-items": "flex-start",
-          gap: "0.5rem",
+          display: 'flex',
+          'flex-direction': 'column',
+          'align-items': 'flex-start',
+          gap: '0.5rem',
         }}
       >
         <button onClick={popSuccess}>Pop success</button>
