@@ -1,4 +1,4 @@
-import { JSX } from 'solid-js';
+import type { JSX } from 'solid-js';
 import { keyframes } from 'goober';
 
 export const toastBarBase: JSX.CSSProperties = {
@@ -42,3 +42,11 @@ export const iconContainer: JSX.CSSProperties = {
 };
 
 export const rotate = keyframes`from{transform: rotate(0deg);}to{transform: rotate(360deg);}`;
+
+export const genSVGCubicBezier: (
+  keySplines: string
+) => Pick<JSX.AnimateSVGAttributes<SVGAnimateElement>, 'calcMode' | 'keyTimes' | 'keySplines'> = (keySplines) => ({
+  calcMode: 'spline',
+  keyTimes: '0; 1',
+  keySplines: keySplines,
+});

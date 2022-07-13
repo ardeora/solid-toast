@@ -1,4 +1,5 @@
 import { IconProps } from '../types';
+import { genSVGCubicBezier } from '../util';
 import { MainCircle, SecondaryCircle } from './IconCircle';
 
 export const Error = (props: IconProps) => {
@@ -16,11 +17,34 @@ export const Error = (props: IconProps) => {
         stroke-linecap="round"
         d="M16,7l0,9"
       >
-        <animate attributeName="stroke-dashoffset" values="9;0" dur="0.1s" begin="200ms" fill="freeze" />
+        <animate
+          attributeName="stroke-dashoffset"
+          values="9;0"
+          dur="0.1s"
+          begin="200ms"
+          fill="freeze"
+          // ease-in
+          {...genSVGCubicBezier('0.42 0.0 1.0 1.0')}
+        />
       </path>
       <circle fill={props.secondary || '#FFFFFF'} cx="16" r="2.5" opacity="0">
-        <animate attributeName="opacity" values="0;1" dur="0.2s" begin="320ms" fill="freeze" />
-        <animate attributeName="cy" values="16;23" dur="0.2s" begin="320ms" fill="freeze" />
+        <animate
+          attributeName="opacity"
+          values="0;1"
+          dur="0.2s"
+          begin="320ms"
+          fill="freeze"
+          // ease-out
+          {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
+        />
+        <animate
+          attributeName="cy"
+          values="16;23"
+          dur="0.2s"
+          begin="320ms"
+          fill="freeze"
+          {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
+        />
       </circle>
     </svg>
   );
