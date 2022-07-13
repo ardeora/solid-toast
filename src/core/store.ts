@@ -73,13 +73,15 @@ export const dispatch = (action: Action) => {
       if (toastId) {
         const toastToRemove = toasts.find(t => t.id === toastId)
         if (toastToRemove) scheduleRemoval(toastId, toastToRemove.unmountDelay)
+        setStore('toasts', t => t.id === toastId, p(t => t.visible = false))
       } else {
         toasts.forEach(t => {
           scheduleRemoval(t.id, t.unmountDelay)
         })
+        setStore('toasts', t => t.id !== undefined, p(t => t.visible = false))
       }
 
-      setStore('toasts', t => t.id === toastId, p(t => t.visible = false))
+      
       break;
     case ActionType.REMOVE_TOAST:
       if (!action.toastId) {
