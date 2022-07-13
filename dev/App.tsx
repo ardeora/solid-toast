@@ -2,14 +2,12 @@ import { Component } from "solid-js";
 import toast, { Toaster } from "../src";
 
 const App: Component = () => {
-  let toastID: string[] = [];
   const popSuccess = () =>
-    toastID.push(toast.success("Success!", { duration: Infinity }));
+    toast.success("Success!", { duration: Infinity });
   const popError = () =>
-    toastID.push(toast.error("Error!", { duration: Infinity }));
+    toast.error("Error!", { duration: Infinity });
   const closeAll = () => {
-    toastID.forEach((id) => toast.dismiss(id));
-    toastID = [];
+   toast.dismiss();
   };
   return (
     <div>
