@@ -35,9 +35,8 @@
   },
   "sideEffects": false,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config ./dev/vite.config.ts",
     "build": "rollup -c",
-    "preview": "vite preview",
     "minify": "terser --compress --mangle --module -- dist/cjs/index.js > dist/cjs/index.min.js"
   },
   "homepage": "https://github.com/ardeora/solid-toast#readme",
