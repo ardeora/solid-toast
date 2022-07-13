@@ -1,5 +1,5 @@
 import { Component } from 'solid-js';
-import toast, { Toaster } from '../';
+import toast, { Toaster } from '../src';
 
 const App: Component = () => {
   const popSuccess = () => toast.success('Success!', { duration: Infinity });
