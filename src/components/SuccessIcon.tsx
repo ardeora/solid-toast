@@ -7,7 +7,7 @@ export const Success = (props: IconProps) => {
   const check = `${icon} 0.2s ease-out forwards`;
 
   return (
-    <svg style={{ overflow: "visible" }} viewBox="0 0 32 32" width="2rem" height="2rem">
+    <svg style={{ overflow: "visible" }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
       <circle
         style={{
           animation: mainCircle,
