@@ -7,8 +7,8 @@ export const Loader = (props: IconProps) => {
     <svg
       style={{ overflow: "visible" }}
       viewBox="0 0 32 32"
-      width="2rem"
-      height="2rem"
+      width="1.25rem"
+      height="1.25rem"
     >
       <path
         fill="none"
