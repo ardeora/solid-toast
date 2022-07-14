@@ -14,14 +14,6 @@ export const toastBarBase: JSX.CSSProperties = {
   'will-change': 'transform',
 };
 
-export const entranceAnimation = (direction: number): string => `
-0% {transform: translate3d(0,${direction * -200}%,0) scale(.6); opacity:.5;}
-100% {transform: translate3d(0,0,0) scale(1); opacity:1;}
-`;
-export const exitAnimation = (direction: number): string => `
-0% {transform: translate3d(0,0,-1px) scale(1); opacity:1;}
-100% {transform: translate3d(0,${direction * -150}%,-1px) scale(.4); opacity:0;}
-`;
 export const messageContainer: JSX.CSSProperties = {
   display: 'flex',
   'align-items': 'center',
