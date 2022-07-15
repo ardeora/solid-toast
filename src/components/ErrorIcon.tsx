@@ -1,61 +1,43 @@
-import { iconCircle, pingCircle, icon, infoDot } from '../util';
 import { IconProps } from '../types';
+import { genSVGCubicBezier } from '../util';
+import { MainCircle, SecondaryCircle } from './IconCircle';
 
 export const Error = (props: IconProps) => {
-  const mainCircle = `${iconCircle} 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards`;
-  const secondaryCircle = `${pingCircle} 1s cubic-bezier(0, 0, 0.2, 1) forwards`;
-  const infoDash = `${icon} 0.1s ease-in forwards`;
-  const infoCircle = `${infoDot} 0.2s ease-out forwards`;
-
+  const fill = props.primary || '#FF3B30';
   return (
     <svg style={{ overflow: 'visible' }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
-      <circle
-        style={{
-          animation: mainCircle,
-          'transform-origin': '50% 50%',
-          'animation-delay': '100ms',
-          opacity: 0,
-        }}
-        fill={props.primary || '#FF3B30'}
-        cx="16"
-        cy="16"
-        r="16"
-      />
-      <circle
-        style={{
-          animation: secondaryCircle,
-          'transform-origin': '50% 50%',
-          'animation-delay': '320ms',
-        }}
-        fill={props.primary || '#FF3B30'}
-        cx="16"
-        cy="16"
-        r="12"
-      />
+      <MainCircle fill={fill} />
+      <SecondaryCircle fill={fill} />
       <path
-        style={{
-          animation: infoDash,
-          'stroke-dasharray': 9,
-          'stroke-dashoffset': 9,
-          'animation-delay': '200ms',
-        }}
         fill="none"
         stroke={props.secondary || '#FFFFFF'}
         stroke-width="4"
+        stroke-dasharray="9"
+        stroke-dashoffset="9"
         stroke-linecap="round"
         d="M16,7l0,9"
-      />
-      <circle
-        style={{
-          animation: infoCircle,
-          'animation-delay': '320ms',
-          opacity: 0,
-        }}
-        fill={props.secondary || '#FFFFFF'}
-        cx="16"
-        cy="16"
-        r="2.5"
-      />
+      >
+        <animate
+          attributeName="stroke-dashoffset"
+          values="9;0"
+          dur="0.2s"
+          begin="250ms"
+          fill="freeze"
+          // ease-in
+          {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
+        />
+      </path>
+      <circle fill={props.secondary || '#FFFFFF'} cx="16" cy="23" r="2.5" opacity="0">
+        <animate
+          attributeName="opacity"
+          values="0;1"
+          dur="0.25s"
+          begin="350ms"
+          fill="freeze"
+          // ease-out
+          {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
+        />
+      </circle>
     </svg>
   );
 };

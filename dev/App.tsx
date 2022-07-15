@@ -4,6 +4,7 @@ import toast, { Toaster } from '../src';
 const App: Component = () => {
   const popSuccess = () => toast.success('Success!', { duration: Infinity });
   const popError = () => toast.error('Error!', { duration: Infinity });
+  const popLoading = () => toast.loading('Loading...');
   const closeAll = () => toast.dismiss();
   return (
     <div>
@@ -18,6 +19,7 @@ const App: Component = () => {
       >
         <button onClick={popSuccess}>Pop success</button>
         <button onClick={popError}>Pop error</button>
+        <button onClick={popLoading}>Pop loading</button>
         <button onClick={closeAll}>Close all toasts</button>
       </div>
     </div>

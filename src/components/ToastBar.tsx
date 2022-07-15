@@ -1,36 +1,48 @@
-import { keyframes } from 'goober';
-import { createEffect, createSignal, Match, Switch } from 'solid-js';
-import { ToastBarProps } from '../types';
-import { resolveValue } from '../types';
-import {
-  toastBarBase,
-  messageContainer,
-  entranceAnimation,
-  exitAnimation,
-  iconContainer,
-  getToastYDirection as d,
-} from '../util';
-import { Success, Error, Loader } from './';
+import { createEffect, Match, Switch } from 'solid-js';
+import { resolveValue, ToastBarProps } from '../types';
+import { getToastYDirection as d, iconContainer, messageContainer, toastBarBase } from '../util';
+import { Error, Loader, Success } from './';
 
 export const ToastBar = (props: ToastBarProps) => {
-  const [animation, setAnimation] = createSignal('');
+  let el: HTMLDivElement | undefined;
 
   createEffect(() => {
-    props.toast.visible
-      ? setAnimation(
-          `${keyframes(entranceAnimation(d(props.toast, props.position)))} 0.35s cubic-bezier(.21,1.02,.73,1) forwards`
-        )
-      : setAnimation(
-          `${keyframes(exitAnimation(d(props.toast, props.position)))}  0.4s forwards cubic-bezier(.06,.71,.55,1)`
-        );
+    if (!el) return;
+    const direction = d(props.toast, props.position);
+    if (props.toast.visible) {
+      el.animate(
+        [
+          { transform: `translate3d(0,${direction * -200}%,0) scale(.6)`, opacity: 0.5 },
+          { transform: 'translate3d(0,0,0) scale(1)', opacity: 1 },
+        ],
+        {
+          duration: 350,
+          fill: 'forwards',
+          easing: 'cubic-bezier(.21,1.02,.73,1)'
+        }
+      );
+    } else {
+      el.animate(
+        [
+          { transform: 'translate3d(0,0,-1px) scale(1)', opacity: 1 },
+          { transform: `translate3d(0,${direction * -150}%,-1px) scale(.4)`, opacity: 0 },
+        ],
+        {
+          duration: 400,
+          fill: 'forwards',
+          easing: 'cubic-bezier(.06,.71,.55,1)'
+        }
+      );
+    }
   });
 
   return (
     <div
+      ref={el}
       class={props.toast.className}
       style={{
         ...toastBarBase,
-        animation: animation(),
+        // animation: animation(),
         ...props.toast.style,
       }}
     >

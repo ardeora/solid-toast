@@ -41,9 +41,7 @@
     "format": "prettier --write src dev"
   },
   "homepage": "https://github.com/ardeora/solid-toast#readme",
-  "dependencies": {
-    "goober": "^2.1.9"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "solid-js": "^1.4.2"
   },
