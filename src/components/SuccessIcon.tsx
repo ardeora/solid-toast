@@ -7,7 +7,7 @@ export const Success = (props: IconProps) => {
   return (
     <svg style={{ overflow: 'visible' }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
       <MainCircle fill={fill} />
-      <SecondaryCircle fill={fill} begin="250ms" />
+      <SecondaryCircle fill={fill} begin="350ms" />
       <path
         fill="none"
         stroke={props.secondary || '#FCFCFC'}
