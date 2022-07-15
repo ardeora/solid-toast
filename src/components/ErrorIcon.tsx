@@ -20,11 +20,11 @@ export const Error = (props: IconProps) => {
         <animate
           attributeName="stroke-dashoffset"
           values="9;0"
-          dur="0.1s"
-          begin="200ms"
+          dur="0.2s"
+          begin="250ms"
           fill="freeze"
           // ease-in
-          {...genSVGCubicBezier('0.42 0.0 1.0 1.0')}
+          {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
         />
       </path>
       <circle fill={props.secondary || '#FFFFFF'} cx="16" r="2.5" opacity="0">
