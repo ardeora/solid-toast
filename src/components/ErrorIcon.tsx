@@ -27,12 +27,12 @@ export const Error = (props: IconProps) => {
           {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
         />
       </path>
-      <circle fill={props.secondary || '#FFFFFF'} cx="16" r="2.5" opacity="0">
+      <circle fill={props.secondary || '#FFFFFF'} cx="16" cy="23" r="2.5" opacity="0">
         <animate
           attributeName="opacity"
           values="0;1"
-          dur="0.2s"
-          begin="320ms"
+          dur="0.25s"
+          begin="350ms"
           fill="freeze"
           // ease-out
           {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
