@@ -29,7 +29,7 @@ export const SecondaryCircle: Component<{ fill: string; begin?: string }> = (pro
   return (
     <circle fill={props.fill} cx="16" cy="16" r="12">
       <animate attributeName="opacity" values="1; 0" {...publicProps} />
-      <animate attributeName="r" values="12; 36" {...publicProps} />
+      <animate attributeName="r" values="12; 26" {...publicProps} />
     </circle>
   );
 };
