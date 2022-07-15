@@ -3,7 +3,9 @@ import { terser } from "rollup-plugin-terser";
 
 export default withSolid({
   targets: ["esm", "cjs"],
-  plugins: [terser({
-    module: true,
-  })]
+  plugins: [
+    terser({
+      module: true,
+    })
+  ]
 });

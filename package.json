@@ -1,6 +1,6 @@
 {
   "name": "solid-toast",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Customizable Toast Notifications for SolidJS",
   "source": "./src/index.tsx",
   "main": "dist/cjs/index.js",
@@ -45,6 +45,7 @@
     "solid-js": "^1.4.2"
   },
   "devDependencies": {
+    "@rollup/plugin-babel": "^5.3.1",
     "@types/node": "^17.0.35",
     "prettier": "^2.7.1",
     "rollup": "^2.75.7",
