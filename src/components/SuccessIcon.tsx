@@ -21,7 +21,7 @@ export const Success = (props: IconProps) => {
         <animate
           attributeName="stroke-dashoffset"
           values="22;0"
-          dur="0.2s"
+          dur="0.25s"
           begin="250ms"
           fill="freeze"
           // ease-out
