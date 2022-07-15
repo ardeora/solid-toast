@@ -16,8 +16,9 @@ export const ToastBar = (props: ToastBarProps) => {
           { transform: 'translate3d(0,0,0) scale(1)', opacity: 1 },
         ],
         {
-          duration: 250,
+          duration: 350,
           fill: 'forwards',
+          easing: 'cubic-bezier(.21,1.02,.73,1)'
         }
       );
     } else {
