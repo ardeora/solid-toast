@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply font-medium;
+}
+
+h1 {
+  @apply text-2xl font-semibold mt-3 mb-6;
+}
+
+.button {
+  @apply px-3 py-2 rounded font-medium mb-1 text-sm;
+}
+
+.blank {
+  @apply button text-gray-700 bg-gray-200 hover:bg-gray-300
+}
+
+.success {
+  @apply button text-green-800 bg-green-200 hover:bg-green-300
+}
+
+.error {
+  @apply button text-red-800 bg-red-200 hover:bg-red-300
+}
+
+.loading {
+  @apply button text-yellow-800 bg-yellow-200 hover:bg-yellow-300
+}
+
+.promise {
+  @apply button text-blue-800 bg-blue-200 hover:bg-blue-300
+}
+
+.promise-txt {
+  @apply min-w-[185px] text-center;
+}
+
+.custom {
+  @apply button text-orange-800 bg-orange-200 hover:bg-orange-300
+}
+
+.close {
+  @apply button text-purple-800 bg-purple-200 hover:bg-purple-300
+}

@@ -36,6 +36,8 @@ export const ToastBar = (props: ToastBarProps) => {
     }
   });
 
+  console.log('CLASSSNAME', props.toast.className)
+
   return (
     <div
       ref={el}

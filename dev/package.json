@@ -1,0 +1,20 @@
+{
+  "name": "solid-toast-csr-demo",
+  "version": "1.0.0",
+  "description": "Solid Toast CSR Examples ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.6",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.9",
+    "vite-plugin-dts": "^1.2.0",
+    "vite-plugin-solid": "^2.2.6"
+  }
+}

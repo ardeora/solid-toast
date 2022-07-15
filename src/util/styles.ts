@@ -3,7 +3,6 @@ import type { JSX } from 'solid-js';
 export const toastBarBase: JSX.CSSProperties = {
   display: 'flex',
   'align-items': 'center',
-  background: 'white',
   color: '#363636',
   'box-shadow': '0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05)',
   'max-width': '350px',
