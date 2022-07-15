@@ -4,7 +4,7 @@ import toast, { Toaster } from '../src';
 const App: Component = () => {
   const popSuccess = () => toast.success('Success!', { duration: Infinity });
   const popError = () => toast.error('Error!', { duration: Infinity });
-  const popLoading = () => toast.loading('Loading...', { duration: Infinity });
+  const popLoading = () => toast.loading('Loading...');
   const closeAll = () => toast.dismiss();
   return (
     <div>
