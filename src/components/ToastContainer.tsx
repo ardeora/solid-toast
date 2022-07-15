@@ -1,13 +1,9 @@
-import { ToastContainerProps } from '../';
-import { getToastWrapperStyles, updateToastHeight, getWrapperYAxisOffset } from '../util';
 import { createEffect, createSignal, onMount } from 'solid-js';
+import { ToastContainerProps } from '../';
 import { defaultToastOptions, dispatch } from '../core';
 import { ActionType, resolveValue } from '../types';
+import { getToastWrapperStyles, getWrapperYAxisOffset, updateToastHeight } from '../util';
 import { ToastBar } from './ToastBar';
-import { css } from 'goober';
-
-{/* prettier-ignore */}
-const activeClass = css`z-index: 9999;> * {pointer-events: auto;}`;
 
 export const ToastContainer = (props: ToastContainerProps) => {
   const calculatePosition = () => {
@@ -36,7 +32,7 @@ export const ToastContainer = (props: ToastContainerProps) => {
     <div
       ref={el}
       style={positionStyle()}
-      class={props.toast.visible ? activeClass : ''}
+      class={props.toast.visible ? 'sldt-active' : ''}
       onMouseEnter={() =>
         dispatch({
           type: ActionType.START_PAUSE,

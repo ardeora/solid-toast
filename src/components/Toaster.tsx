@@ -27,6 +27,7 @@ export const Toaster = (props: ToasterProps) => {
       }}
       class={props.containerClassName}
     >
+      <style>{`.sldt-active{z-index:9999;}.sldt-active>*{pointer-events:auto;}`}</style>
       <For each={store.toasts}>{(toast) => <ToastContainer toast={toast as Toast} />}</For>
     </div>
   );
