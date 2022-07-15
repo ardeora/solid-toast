@@ -37,14 +37,6 @@ export const Error = (props: IconProps) => {
           // ease-out
           {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
         />
-        <animate
-          attributeName="cy"
-          values="16;23"
-          dur="0.2s"
-          begin="320ms"
-          fill="freeze"
-          {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
-        />
       </circle>
     </svg>
   );
