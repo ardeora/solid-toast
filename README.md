@@ -3,7 +3,7 @@
 <div align="center">
     <img src="https://badgen.net/npm/v/solid-toast" alt="NPM Version" />
     <a href="https://bundlejs.com/?q=skypack%3Asolid-toast&treeshake=%5B%7B+Toaster%2Ctoast+%7D%5D&config=%7B%22analysis%22%3Atrue%2C%22esbuild%22%3A%7B%22external%22%3A%5B%22solid-js%22%5D%7D%7D">
-    <img src="https://img.shields.io/badge/Bundle%20Size-3.2kb-brightgreen" alt="minzipped size"/>
+    <img src="https://img.shields.io/badge/Bundle%20Size-3.82kb-brightgreen" alt="minzipped size"/>
     </a>
     <img src="https://github.com/ardeora/solid-toast/workflows/build/badge.svg" alt="Build Status" />
 </a>
