@@ -42,6 +42,10 @@ h1 {
   @apply button text-orange-800 bg-orange-200 hover:bg-orange-300
 }
 
+.timer {
+  @apply button text-pink-800 bg-pink-200 hover:bg-pink-300
+}
+
 .close {
   @apply button text-purple-800 bg-purple-200 hover:bg-purple-300
 }

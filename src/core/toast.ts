@@ -18,6 +18,7 @@ export const createToast = (message: Message, type: ToastType = 'blank', options
   createdAt: Date.now(),
   visible: true,
   id: options.id || generateID(),
+  paused: false,
   style: {
     ...defaultToastOptions.style,
     ...defaultOpts().toastOptions?.style,

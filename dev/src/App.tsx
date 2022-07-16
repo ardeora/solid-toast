@@ -1,4 +1,4 @@
-import { Component } from 'solid-js';
+import { Component, createEffect, createMemo, createSignal, onCleanup } from 'solid-js';
 import toast, { Toaster } from '../../src';
 
 const makePromise = (): Promise<string> => {
@@ -26,11 +26,35 @@ const App: Component = () => {
       primary: '#ea580c',
       secondary: '#ffedd5'
     },
-    className: "border-2 border-orange-800 bg-orange-100",
+    className: "border-2 border-orange-800",
     style: {
-      color: '#c2410c'
+      color: '#c2410c',
+      background: '#ffedd5'
     },
     duration: Infinity
+  });
+  const popTimer = () => toast.custom((t) => {
+    const [life, setLife] = createSignal(100)
+    
+    createEffect(() => {
+      if (t.paused) return; 
+      const interval = setInterval(() => {
+        console.log(t.paused)
+        setLife(l => l - 0.5)
+      }, 10)
+
+      onCleanup(() => clearInterval(interval))
+    })
+
+    return (
+      <div class="bg-pink-100 shadow-md px-4 py-3 rounded overflow-hidden relative text-pink-700">
+        <div style={{width: `${life()}%`}} class="bg-pink-200 h-full absolute top-0 left-0" ></div>
+        <span class="relative" >Timer In The Background</span>
+      </div>
+    )
+  }, {
+    duration: 2000,
+    unmountDelay: 0
   });
 
   const closeAll = () => toast.dismiss();
@@ -52,7 +76,9 @@ const App: Component = () => {
         <button class={"loading"} onClick={popLoading}>Loading Toast</button>
         <button class={"promise"} onClick={popPromise}>Promise Toast</button>
         <button class={"custom"} onClick={popCustom}>Custom Styles</button>
+        <button class={"timer"}   onClick={popTimer}>Toast Timer</button>
         <button class={"close"}   onClick={closeAll}>Close all toasts</button>
+        
       </div>
     </div>
   );

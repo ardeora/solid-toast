@@ -123,7 +123,12 @@ export const dispatch = (action: Action) => {
         : dispatch({ type: ActionType.ADD_TOAST, toast: action.toast });
       break;
     case ActionType.START_PAUSE:
-      setStore('pausedAt', Date.now());
+      setStore(p((s) => {
+        s.pausedAt = Date.now();
+        s.toasts.forEach((t) => {
+          t.paused = true;
+        });
+      }));
       break;
     case ActionType.END_PAUSE:
       const pauseInterval = action.time - (store.pausedAt || 0);
@@ -132,6 +137,7 @@ export const dispatch = (action: Action) => {
           s.pausedAt = undefined;
           s.toasts.forEach((t) => {
             t.pauseDuration += pauseInterval;
+            t.paused = false;
           });
         })
       );
