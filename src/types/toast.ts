@@ -27,6 +27,7 @@ export interface Toast {
   icon?: Renderable;
   duration?: number;
   pauseDuration: number;
+  paused: boolean;
   position?: ToastPosition;
 
   ariaProps: {
