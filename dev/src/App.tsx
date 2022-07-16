@@ -54,7 +54,7 @@ const App: Component = () => {
     )
   }, {
     duration: 2000,
-    unmountDelay: 0
+    unmountDelay: 1000
   });
 
   const closeAll = () => toast.dismiss();
