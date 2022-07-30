@@ -27,7 +27,7 @@ export const SecondaryCircle: Component<{ fill: string; begin?: string }> = (pro
     ...genSVGCubicBezier('0.0 0.0 0.2 1'),
   };
   return (
-    <circle fill={props.fill} cx="16" cy="16" r="12">
+    <circle fill={props.fill} cx="16" cy="16" r="12" opacity="0">
       <animate attributeName="opacity" values="1; 0" {...publicProps} />
       <animate attributeName="r" values="12; 26" {...publicProps} />
     </circle>
