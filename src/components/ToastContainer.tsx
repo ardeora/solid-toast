@@ -1,4 +1,4 @@
-import { createEffect, createSignal, onMount } from 'solid-js';
+import { createMemo, onMount } from 'solid-js';
 import { ToastContainerProps } from '../';
 import { defaultToastOptions, dispatch } from '../core';
 import { ActionType, resolveValue } from '../types';
@@ -14,12 +14,7 @@ export const ToastContainer = (props: ToastContainerProps) => {
     return positionStyle;
   };
 
-  const [positionStyle, setPositionStyle] = createSignal(calculatePosition());
-
-  createEffect(() => {
-    const newStyles = calculatePosition();
-    setPositionStyle(newStyles);
-  });
+  const positionStyle = createMemo(() => calculatePosition());
 
   let el: HTMLDivElement | undefined = undefined;
   onMount(() => {
