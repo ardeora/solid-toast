@@ -1,9 +1,9 @@
-import { createEffect, Match, Switch } from 'solid-js';
+import { createEffect, Match, Switch, Component } from 'solid-js';
 import { resolveValue, ToastBarProps } from '../types';
 import { getToastYDirection as d, iconContainer, messageContainer, toastBarBase } from '../util';
 import { Error, Loader, Success } from './';
 
-export const ToastBar = (props: ToastBarProps) => {
+export const ToastBar: Component<ToastBarProps> = (props) => {
   let el: HTMLDivElement | undefined;
 
   createEffect(() => {
@@ -42,7 +42,6 @@ export const ToastBar = (props: ToastBarProps) => {
       class={props.toast.className}
       style={{
         ...toastBarBase,
-        // animation: animation(),
         ...props.toast.style,
       }}
     >

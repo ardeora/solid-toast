@@ -1,6 +1,7 @@
 import { IconProps } from '../types';
+import type { Component } from 'solid-js';
 
-export const Loader = (props: IconProps) => (
+export const Loader: Component<IconProps> = (props) => (
   <svg style={{ overflow: 'visible' }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
     <path
       fill="none"

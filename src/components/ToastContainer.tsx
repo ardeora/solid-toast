@@ -1,11 +1,11 @@
-import { createMemo, onMount } from 'solid-js';
+import { createMemo, onMount, Component } from 'solid-js';
 import { ToastContainerProps } from '../';
 import { defaultToastOptions, dispatch } from '../core';
 import { ActionType, resolveValue } from '../types';
 import { getToastWrapperStyles, getWrapperYAxisOffset, updateToastHeight } from '../util';
 import { ToastBar } from './ToastBar';
 
-export const ToastContainer = (props: ToastContainerProps) => {
+export const ToastContainer: Component<ToastContainerProps> = (props) => {
   const calculatePosition = () => {
     const position = props.toast.position || defaultToastOptions.position;
     const offset = getWrapperYAxisOffset(props.toast, position);

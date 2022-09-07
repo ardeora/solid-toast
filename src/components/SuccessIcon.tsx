@@ -1,8 +1,9 @@
+import type { Component } from 'solid-js';
 import { IconProps } from '../types';
 import { genSVGCubicBezier } from '../util';
 import { MainCircle, SecondaryCircle } from './IconCircle';
 
-export const Success = (props: IconProps) => {
+export const Success: Component<IconProps> = (props: IconProps) => {
   const fill = props.primary || '#34C759';
   return (
     <svg style={{ overflow: 'visible' }} viewBox="0 0 32 32" width="1.25rem" height="1.25rem">
@@ -24,7 +25,6 @@ export const Success = (props: IconProps) => {
           dur="0.25s"
           begin="250ms"
           fill="freeze"
-          // ease-out
           {...genSVGCubicBezier('0.0, 0.0, 0.58, 1.0')}
         />
       </path>
