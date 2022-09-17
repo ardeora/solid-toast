@@ -1,5 +1,5 @@
 import { setDefaultOpts, defaultOpts, store, dispatch, defaultToasterOptions } from '../core';
-import { ActionType, Toast, ToasterProps, ToastPosition } from '../types';
+import { Action, ActionType, Toast, ToasterProps, ToastPosition } from '../types';
 import { JSX } from 'solid-js';
 
 export const generateID = (() => {
@@ -44,7 +44,7 @@ export const updateToastHeight = (ref: HTMLDivElement, toast: Toast) => {
   const boundingRect = ref.getBoundingClientRect();
   if (boundingRect.height !== toast.height) {
     dispatch({
-      type: ActionType.UPDATE_TOAST,
+      type: 'update',
       toast: { id: toast.id, height: boundingRect.height },
     });
   }
@@ -60,8 +60,7 @@ export const getWrapperYAxisOffset = (toast: Toast, position: ToastPosition): nu
   return offset;
 };
 
-export const getToastYDirection = (toast: Toast, defaultPos: ToastPosition) => {
-  const position = toast.position || defaultPos;
-  const top = position.includes('top');
-  return top ? 1 : -1;
-};
+export const getToastYDirection = (toast: Toast, defaultPos: ToastPosition) =>
+  (toast.position || defaultPos).includes('top') ? 1 : -1;
+
+export const isAction = <K extends ActionType>(action: any, type: K): action is Action<K> => action.type === type;

@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { ToasterProps, Message, ToastType, ToastOptions, Toast, ToastHandler, ActionType } from '../types';
+import { ToasterProps, Message, ToastType, ToastOptions, Toast, ToastHandler } from '../types';
 import { defaultToasterOptions, defaultToastOptions, defaultTimeouts } from './defaults';
 import { generateID } from '../util';
 import { dispatch, store } from './store';
@@ -34,7 +34,7 @@ const createToastCreator =
   (message: Message, options: ToastOptions = {}) => {
     const existingToast = store.toasts.find((t) => t.id === options.id) as Toast;
     const toast = createToast(message, type, { ...existingToast, duration: undefined, ...options });
-    dispatch({ type: ActionType.UPSERT_TOAST, toast });
+    dispatch({ type: 'upsert', toast });
     return toast.id;
   };
 
@@ -47,7 +47,7 @@ toast.custom = createToastCreator('custom');
 
 toast.dismiss = (toastId?: string) => {
   dispatch({
-    type: ActionType.DISMISS_TOAST,
+    type: 'dismiss',
     toastId,
   });
 };
@@ -83,7 +83,7 @@ toast.promise = <T>(
 
 toast.remove = (toastId?: string) => {
   dispatch({
-    type: ActionType.REMOVE_TOAST,
+    type: 'remove',
     toastId,
   });
 };
