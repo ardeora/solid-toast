@@ -1673,9 +1673,9 @@ serialize-javascript@^4.0.0:
     randombytes "^2.1.0"
 
 solid-js@^1.4.2:
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.5.9.tgz#d9249d83bcc88e9af75a12ed29cee370959fd7b7"
-  integrity sha512-vzM/KLui4r7JaTXh2+clrjZmEVP+gow4yFr8yDcz8+KtsrLmMxZXmIHqXoPImFy4FBFBZwtOCnRXp7NEOHPzIg==
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/solid-js/-/solid-js-1.6.6.tgz#984be6753531e99ed1b389fd59b07e88c19094e0"
+  integrity sha512-5x33mEbPI8QLuywvFjQP4krjWDr8xiYFgZx9KCBH7b0ZzypQCHaUubob7bK6i+1u6nhaAqhWtvXS587Kb8DShA==
   dependencies:
     csstype "^3.1.0"
 
