@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js';
+import { createRoot, createSignal, untrack } from 'solid-js';
 import { ToasterProps, Message, ToastType, ToastOptions, Toast, ToastHandler, ActionType } from '../types';
 import { defaultToasterOptions, defaultToastOptions, defaultTimeouts } from './defaults';
 import { generateID } from '../util';
@@ -32,13 +32,16 @@ export const createToast = (message: Message, type: ToastType = 'blank', options
 const createToastCreator =
   (type?: ToastType): ToastHandler =>
   (message: Message, options: ToastOptions = {}) => {
-    const existingToast = store.toasts.find((t) => t.id === options.id) as Toast;
-    const toast = createToast(message, type, { ...existingToast, duration: undefined, ...options });
-    dispatch({ type: ActionType.UPSERT_TOAST, toast });
-    return toast.id;
+    return createRoot(() => {
+      const existingToast = store.toasts.find((t) => t.id === options.id) as Toast;
+      const toast = createToast(message, type, { ...existingToast, duration: undefined, ...options });
+      dispatch({ type: ActionType.UPSERT_TOAST, toast });
+      return toast.id;
+    });
   };
 
 const toast = (message: Message, opts?: ToastOptions) => createToastCreator('blank')(message, opts);
+const test = untrack(() => toast);
 
 toast.error = createToastCreator('error');
 toast.success = createToastCreator('success');
