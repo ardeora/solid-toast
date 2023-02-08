@@ -18,7 +18,7 @@ export const ToastBar: Component<ToastBarProps> = (props) => {
         {
           duration: 350,
           fill: 'forwards',
-          easing: 'cubic-bezier(.21,1.02,.73,1)'
+          easing: 'cubic-bezier(.21,1.02,.73,1)',
         }
       );
     } else {
@@ -30,7 +30,7 @@ export const ToastBar: Component<ToastBarProps> = (props) => {
         {
           duration: 400,
           fill: 'forwards',
-          easing: 'cubic-bezier(.06,.71,.55,1)'
+          easing: 'cubic-bezier(.06,.71,.55,1)',
         }
       );
     }

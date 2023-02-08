@@ -21,30 +21,27 @@ export interface IconTheme {
 }
 
 export interface Toast {
-  type: ToastType;
   id: string;
-  message: ValueOrFunction<Renderable, Toast>;
   icon?: Renderable;
   duration?: number;
-  pauseDuration: number;
-  paused: boolean;
-  position?: ToastPosition;
-
+  message: ValueOrFunction<Renderable, Toast>;
   ariaProps: {
     role: 'status' | 'alert';
     'aria-live': 'assertive' | 'off' | 'polite';
   };
-
-  style?: JSX.CSSProperties;
   className?: string;
-
+  style?: JSX.CSSProperties;
+  position?: ToastPosition;
+  unmountDelay: number;
   iconTheme?: IconTheme;
 
+  pauseDuration: number;
+  paused: boolean;
+  type: ToastType;
   createdAt: number;
   updatedAt?: number;
   visible: boolean;
   height?: number;
-  unmountDelay: number;
 }
 
 export type ToastOptions = Partial<

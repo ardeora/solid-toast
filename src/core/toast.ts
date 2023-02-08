@@ -41,7 +41,6 @@ const createToastCreator =
   };
 
 const toast = (message: Message, opts?: ToastOptions) => createToastCreator('blank')(message, opts);
-const test = untrack(() => toast);
 
 toast.error = createToastCreator('error');
 toast.success = createToastCreator('success');
