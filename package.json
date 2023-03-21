@@ -10,13 +10,22 @@
     "url": "git+https://github.com/ardeora/solid-toast.git"
   },
   "exports": {
-    ".": {
-      "solid": "./dist/source/index.jsx",
-      "import": "./dist/esm/index.js",
-      "browser": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "node": "./dist/cjs/index.js"
-    }
+    "solid": {
+      "development": "./dist/source/index.jsx",
+      "import": "./dist/source/index.jsx"
+    },
+    "development": {
+      "import": {
+        "types": "./dist/types/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": "./dist/cjs/index.js"
+    },
+    "import": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/esm/index.js"
+    },
+    "require": "./dist/cjs/index.js"
   },
   "files": [
     "dist",
