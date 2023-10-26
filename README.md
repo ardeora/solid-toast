@@ -89,7 +89,7 @@ toast('This is a simple toast!', {
     secondary: '#000',
   },
   // Aria Props - Supports all ARIA props
-  aria: {
+  ariaProps: {
     role: 'status',
     'aria-live': 'polite',
   },
