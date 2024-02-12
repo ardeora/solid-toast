@@ -166,16 +166,16 @@ You can also hook into the toast life-cycle by adding a parameter to the JSX Fun
 
 ```jsx
 toast.custom(
-  (t) => {
+  (t) => (
     <div>
       <h1>Custom Toast</h1>
       <p>This is a custom toast!</p>
       <p>{t.visible ? 'Showing' : 'I will close in 1 second'}</p>
       <button onClick={() => toast.dismiss(t.id)}>Close Toast</button>
     </div>;
-  },
+  ),
   {
-    unmoutDelay: 1000,
+    unmountDelay: 1000,
   }
 );
 ```
