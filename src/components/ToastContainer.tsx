@@ -1,7 +1,7 @@
 import { createMemo, onMount, Component } from 'solid-js';
 import { ToastContainerProps } from '../';
 import { defaultToastOptions, dispatch } from '../core';
-import { ActionType, resolveValue } from '../types';
+import { resolveValue } from '../types';
 import { getToastWrapperStyles, getWrapperYAxisOffset, updateToastHeight } from '../util';
 import { ToastBar } from './ToastBar';
 
@@ -30,13 +30,13 @@ export const ToastContainer: Component<ToastContainerProps> = (props) => {
       class={props.toast.visible ? 'sldt-active' : ''}
       onMouseEnter={() =>
         dispatch({
-          type: ActionType.START_PAUSE,
+          type: 'start_pause',
           time: Date.now(),
         })
       }
       onMouseLeave={() =>
         dispatch({
-          type: ActionType.END_PAUSE,
+          type: 'end_pause',
           time: Date.now(),
         })
       }
